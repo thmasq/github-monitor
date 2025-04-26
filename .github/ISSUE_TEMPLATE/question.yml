@@ -1,0 +1,47 @@
+name: ❓ Question
+description: Ask for help or clarification
+title: "[QUESTION] "
+labels: [question]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before asking, please:
+        - Search [existing issues](https://github.com/thmasq/github-monitor/issues?q=is%3Aissue%20state%3Aopen%20label%3Aquestion)
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: Be specific (avoid "How does X work?")
+      placeholder: "Ex: How do I configure X to work with Y?"
+    validations:
+      required: true
+  - type: textarea
+    id: tried
+    attributes:
+      label: What You've Tried
+      description: List steps you've taken to solve this
+      placeholder: |
+        1. I checked the docs on...
+        2. I attempted to...
+  - type: textarea
+    id: references
+    attributes:
+      label: Relevant References
+      description: Links to docs, Stack Overflow, or related issues
+      placeholder: "https://..."
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Urgency Level
+      options:
+        - "Just curious"
+        - "Blocked but workaround exists"
+        - "Complete blocker (can't proceed)"
+  - type: checkboxes
+    id: verification
+    attributes:
+      label: Verification
+      options:
+        - label: I've searched for similar questions
+        - label: This isn't covered in the documentation
