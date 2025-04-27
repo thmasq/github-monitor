@@ -117,4 +117,7 @@ Essenciais para primeira versão pública:
 - As prioridades e entregas podem mudar conforme feedback da comunidade e crescimento do projeto.
 - Sugestões são sempre bem-vindas! Veja [contribuir.md](./docs/contribuir.md) para colaborar.
 
+## 🕰️ Histórico de Versão
+| Data       | Versão | Descrição            | Autores                                                                                                                            |
+|------------|--------|----------------------|------------------------------------------------------------------------------------------------------------------------------------|
 | 27/04/2025 | 0.1    | Criação do Roadmap | [Yan Luca Viana de Araújo Fontenele](https://github.com/yan-luca) e [Gabriel Marques de Souza](https://github.com/GabrielMS00)|
