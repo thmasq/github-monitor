@@ -18,8 +18,8 @@ services:
       - GF_DASHBOARDS_MIN_REFRESH_INTERVAL=1m  # Prevent dashboard DDoS
       - GF_SECURITY_COOKIE_SAMESITE=strict  # Cookie security
       # Trust Cloudflare headers for proper IP logging
-      - GF_SERVER_ENFORCE_DOMAIN=true
-      - GF_SERVER_ROOT_URL=https://<your-domain>.com
+      # - GF_SERVER_ENFORCE_DOMAIN=true
+      # - GF_SERVER_ROOT_URL=https://<your-domain>.com
     env_file:
       - .env
     volumes:

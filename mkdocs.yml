@@ -1,0 +1,49 @@
+site_name: github-monitor
+theme:
+  name: material
+  language: pt-BR
+  logo: ../../img/logo.png
+  favicon: ../../img/logo.png
+
+  palette:
+
+    # Palette toggle for light mode
+    - scheme: default
+      primary: black
+      accent: pink
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: black
+      accent: pink
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - md_in_html
+  - footnotes
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - pymdownx.extra 
+
+
+nav:
+  - Sobre o projeto: index.md
+  - 1. Guide: Guide/index.md
+  - 2. Contributing: Contributing/index.md
+
+extra_css:
+  - extra.css 
