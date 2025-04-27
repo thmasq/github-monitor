@@ -17,6 +17,7 @@ exportação de relatórios (PDF/Excel). E subir em ambiente de produção (labo
 | [Renann de Oliveira](https://github.com/renannOgomes)                  |           | <img src="assets/renanOliveira.png" alt="renan Oliveira" width="80"> |
 | [Tales Rodrigues Gonçalves](https://github.com/TalesRG)          | 211041295 | <img src="assets/talesRG.png" alt="talesRG" width="80">  |
 | [Vitor Borges dos Santos](https://github.com/VitorB2002)             |           |<img src="assets/vitorBorges.png" alt="Vitor Borges" width="80">     |
+| [Yan Luca Viana de Araújo Fontenele](https://github.com/yan-luca)             |           |<img src="assets/yanLuca.png" alt="Yan Luca" width="80">     |
 
 
 ## 🕰️ Histórico de Versão
