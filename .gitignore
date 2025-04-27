@@ -1,0 +1,46 @@
+# Grafana data directory (contains db, plugins, etc.)
+grafana-data/
+
+# Environment variables and secrets
+.env
+*.env
+.env.*
+!.env.example
+
+# Docker related
+docker-compose.override.yml
+.docker/
+
+# Logs
+*.log
+logs/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Temporary files
+tmp/
+temp/
+
+# Potential data files that might be generated
+*.csv
+*.xlsx
+*.bak
+
+# Keep these files
+!dashboards/*.json
+!provisioning/**/*.yaml
+!grafana.ini
