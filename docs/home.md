@@ -20,7 +20,7 @@ exportação de relatórios (PDF/Excel). E subir em ambiente de produção (labo
 | [Thomas Queiroz](https://github.com/thmasq)          | 211062526 | <img src="assets/thomas.jpg" alt="thomas" width="80">  |
 | [Vitor Borges dos Santos](https://github.com/VitorB2002)             | 200028626 | <img src="assets/vitorBorges.png" alt="Vitor Borges" width="80">     |
 | [Weslley Alves](https://github.com/weslley17w)             |  200044567 |<img src="assets/weslley.jpeg" alt="Weslley Alves" width="80">     |
-| [Yan Luca](https://github.com/yan-luca)             |  211031889 |<img src="assets/yan.jpg" alt="Yan Luca" width="80">     |
+| [Yan Luca Viana de Araújo Fontenele](https://github.com/yan-luca)             |           |<img src="assets/yanLuca.png" alt="Yan Luca" width="80">     |
 
 
 ## 🕰️ Histórico de Versão

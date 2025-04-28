@@ -12,3 +12,4 @@
   - [FuncionamentoDoProjeto](docs/funcionamentoDoProjeto.md)
   - [Home](docs/home.md)
   - [License](docs/license.md)
+  - [Roadmap](docs/roadmap.md)
