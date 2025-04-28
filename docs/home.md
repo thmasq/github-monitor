@@ -14,6 +14,7 @@ exportação de relatórios (PDF/Excel). E subir em ambiente de produção (labo
 | [Ana Luíza Fernandes Alves da Rocha](https://github.com/analufernanndess) | 211030667 |  <img src="assets/analufernanndess.png" alt="Ana Luiza" width="80">   |
 | [Gabriel Marques de Souza](https://github.com/GabrielMS00)           | 202016266 |  <img src="assets/gabrielMarques.png" alt="gabrielMarques" width="80">  |
 | [Geovane Freitas](https://github.com/GeovaneSFT)                     | 211031708 | <img src="assets/geovaneF.png" alt="geovaneF" width="80">  |
+| [Patrick Anderson](https://github.com/patrickacs)      | 211030620 | <img src="assets/patrick.jpg" alt="patrick" width="80">  |
 | [Pedro Eduardo Santos Sousa](https://github.com/PedroEduardoSS)      | 211062375 | <img src="assets/pedroeduardo.jpeg" alt="pedroeduardo" width="80">  |
 | [Renann de Oliveira](https://github.com/renannOgomes)                  | 200043030 | <img src="assets/renanOliveira.png" alt="renan Oliveira" width="80"> |
 | [Tales Rodrigues Gonçalves](https://github.com/TalesRG)          | 211041295 | <img src="assets/talesRG.png" alt="talesRG" width="80">  |
