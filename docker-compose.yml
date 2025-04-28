@@ -1,8 +1,23 @@
 services:
+  init-setup:
+    image: bash:latest
+    volumes:
+      - ./:/app:z
+    working_dir: /app
+    user: root
+    command: >
+      bash -c "
+        chmod +x /app/*.sh &&
+        sh /app/generate-config.sh &&
+        sh /app/set-perms.sh"
+
   grafana:
     image: grafana/grafana:11.6.0
     container_name: grafana
     restart: unless-stopped
+    depends_on:
+      init-setup:
+        condition: service_completed_successfully
     ports:
       - "0.0.0.0:3000:3000"
     environment:

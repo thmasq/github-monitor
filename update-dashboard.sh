@@ -3,6 +3,8 @@
 # Exit on error
 set -e
 
+source .env
+
 # Default values
 DASHBOARD_FILE="dashboards/github.json"
 
