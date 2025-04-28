@@ -148,6 +148,30 @@ Edit `provisioning/datasources/datasource.yaml` to modify the GitHub datasource 
 
 See the [Grafana configuration documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/) for all available options.
 
+## Testing
+
+### Running Tests Locally
+
+1. Run configuration validation:
+```bash
+./test/validate-config.sh
+```
+
+2. Run integration tests:
+```bash
+./test/integration-test.sh
+```
+
+### Continuous Integration
+
+The project uses GitHub Actions for CI/CD. Every push and pull request triggers:
+- Docker configuration validation
+- Container build testing
+- Integration tests
+- Health checks
+
+View the status of CI runs in the GitHub Actions tab.
+
 ## Troubleshooting
 
 ### Configuration Issues
