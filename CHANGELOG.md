@@ -1,6 +1,22 @@
 # CHANGELOG
 
-## [Unreleased] - 2025-04-28
+## [Unreleased]
+
+### Added
+
+- Add PDF export functionality
+- Add template-based personalization automation
+
+## 0.1.1 - 2025-06-02
+
+### Added
+
+- Add architectural design
+- Add data flowchart
+- Add contribution logbook
+- Add user stories related to dashboards customiztion
+
+## 0.1.0 - 2025-04-28
 
 ### Added 
 
