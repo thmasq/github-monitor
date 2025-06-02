@@ -49,36 +49,7 @@ Este backlog tem como objetivo organizar e documentar os requisitos, épicos e h
 
 ---
 
-## 📝 Tarefas
-
-| ID  | US Relacionada | Descrição |
-|-----|----------------|-----------|
-| T01 | US01 | Criar dashboard "Visão Geral" com os campos mais relevantes(commits, PRs, issues) |
-| T02 | US01 | Desenvolver template de painéis reutilizáveis por repositório |
-| T03 | US02 | Criar filtro multi-seleção na interface |
-| T04 | US03 | Construir painel com base nos status das issues (abertas/fechadas/tags) |
-| T05 | US03 | Desenvolver visualização de PRs por status |
-| T06 | US03 | Implementar gráfico de commits por autor/branch |
-| T07 | US03 | Adicionar seletor de intervalo temporal |
-| T08 | US04 | Desenvolver controle de acesso baseado em permissões |
-| T09 | US04 | Desenvolver versão simplificada de dashboards públicos |
-| T10 | US05 | Permitir exportação PDF/Excel/CSV |
-| T11 | US05 | Implementar botão "Exportar" nos painéis |
-| T12 | US05 | Criar templates de relatórios formatados |
-| T13 | US05 | Configurar exportações automáticas |
-| T14 | US06 | Desenvolver Dockerfile para stack Grafana + plugins |
-| T15 | US06 | Criar docker-compose.yml com volumes persistentes |
-| T16 | US06 | Configurar variáveis de ambiente para credenciais |
-| T17 | US06 | Documentar processo de inicialização containerizada |
-| T18 | US07 | Configurar proxy reverso (Nginx/Caddy) |
-| T19 | US07 | Implementar certificado SSL |
-| T20 | US07 | Definir variável `domain` no grafana.ini |
-| T21 | US07 | Configurar registros DNS para subdomínio dedicado |
-
----
-
 ## 🕰️ Histórico de Versão
 | Data       | Versão | Descrição            | Autores                                                                                                                            |
 |------------|--------|----------------------|------------------------------------------------------------------------------------------------------------------------------------|
 | 24/04/2025 | 0.1    | Mapeamento inicial do backlog e estrutura | [Ana Luíza Fernandes Alves da Rocha](https://github.com/analufernanndess) e [Tales Rodrigues Gonçalves](https://github.com/TalesRG)|
-| 31/05/2025 | 0.2    | Derivação das USs em tarefas | [Vitor Borges](https://github.com/VitorB2002)|
