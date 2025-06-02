@@ -6,6 +6,7 @@
 
 - Docs
   - [Backlog](docs/Backlog.md)
+  - [Changelog](docs/changelog.md)
   - [CodigoConduta](docs/codigoConduta.md)
   - [Commits](docs/commits.md)
   - [Contribuir](docs/contribuir.md)

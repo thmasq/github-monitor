@@ -4,3 +4,4 @@
 - [🗂️ Backlog](Backlog.md)
 - [🤝 Codigo de conduta](codigoConduta.md)
 - [🛣️ Roadmap](roadmap.md)
+- [🧩 Changelog](changelog.md)
