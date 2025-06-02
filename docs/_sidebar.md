@@ -5,3 +5,4 @@
 - [🤝 Codigo de conduta](codigoConduta.md)
 - [🛣️ Roadmap](roadmap.md)
 - [🧩 Changelog](changelog.md)
+- [📝 Diário de Bordo](diario-de-bordo.md)
