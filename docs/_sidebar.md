@@ -1,5 +1,6 @@
 - [🏠 Inicio](home.md)
 - [🧩 Funcionamento do projeto](funcionamentoDoProjeto.md)
+- [🧩 Arquitetura](arquitetura.md)
 - [👥 Como contribuir](contribuir.md)
 - [🗂️ Backlog](Backlog.md)
 - [🤝 Codigo de conduta](codigoConduta.md)
