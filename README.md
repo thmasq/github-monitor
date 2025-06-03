@@ -3,193 +3,210 @@
 A ready-to-use GitHub monitoring dashboard for Grafana that provides comprehensive insights into GitHub repositories, issues, pull requests, and more. This project makes it easy to set up and customize dashboards for specific GitHub organizations and repositories.
 Example instance running [here](https://grafana.tantalius.com).
 
+## Quick Start
+
+```bash
+# Clone and setup
+git clone https://github.com/thomasq/github-monitor.git
+cd github-monitor
+
+# Automated setup (one command)
+make quick-start
+```
+
+Access your dashboard at http://localhost:3000
+
 ## Features
 
-- **Pre-configured Dashboards**: Ready-to-use dashboards for tracking GitHub activity
-- **Organization Overview**: View statistics across multiple repositories in an organization
-- **Repository Filtering**: Limit dashboard access to specific repositories
-- **Granular Metrics**: Track issues, pull requests, releases, commits, and more
-- **Anonymous Access**: Configure for public viewing with restricted permissions
-- **Docker Ready**: Easily deploy with Docker Compose
+- **Pre-configured Dashboards** - Ready-to-use GitHub monitoring
+- **Multi-Repository Support** - Track multiple repos and organizations
+- **Smart Filtering** - Configurable repository access control
+- **Full Automation** - Python scripts handle all configuration
+- **Docker Ready** - One-command deployment
+- **Secure Anonymous Access** - Public viewing with restricted permissions
 
 ## Requirements
 
 - Docker and Docker Compose
+- Python 3.7+
 - GitHub Personal Access Token
-- Bash (for running setup scripts)
-- jq (for repository filtering script)
+- Make (optional, for automation)
 
-## Quick Start
+## Installation Methods
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/thomasq/github-monitor.git
-   cd github-monitor
-   ```
+### Method 1: Automated (Recommended)
 
-2. **Create environment file**
-   ```bash
-   cp .env.template .env
-   ```
+```bash
+make install setup generate start
+```
 
-3. **Configure your environment variables**
-   Open the `.env` file and set:
-   ```
-   # Required: GitHub API Token
-   GITHUB_TOKEN=your_github_token_here
-   
-   # Optional: Repositories to monitor
-   REPOS="docker/buildx, docker/model-cli"
-   
-   # Optional: Grafana server configuration
-   GF_SERVER_ROOT_URL=https://your-domain.com
-   GF_SERVER_DOMAIN=your-domain.com
-   GF_SERVER_ENFORCE_DOMAIN=true
-   ```
+### Method 2: Interactive Setup
 
-4. **Set permissions** (required for SELinux environments)
-   ```bash
-   ./set-perms.sh
-   ```
-5. **generate grafana.ini**
-   ```bash
-   ./generate-config.sh
-   ```
-   
-6. **Start Grafana**
-   ```bash
-   docker-compose up -d
-   ```
+```bash
+pip install -r requirements.txt
+python3 interactive_setup.py
+docker-compose up -d
+```
 
-7. **Access the dashboard**
-   
-   Open http://localhost:3000 in your browser (or your custom domain if configured in .env)
+### Method 3: Manual Configuration
+
+```bash
+cp .env.template .env
+# Edit .env with your GitHub token and repositories
+python3 generate_provisioning.py
+python3 update_dashboards.py
+docker-compose up -d
+```
 
 ## Configuration
 
-### Environment Variables
+Set these in your `.env` file:
 
-The dashboard configuration is controlled through environment variables in your `.env` file:
+```bash
+# Required
+GITHUB_TOKEN=your_github_token_here
+REPOS="docker/buildx, kubernetes/kubernetes, grafana/grafana"
 
-| Variable | Purpose | Default |
-|----------|---------|---------|
-| `GITHUB_TOKEN` | GitHub personal access token (required) | None |
-| `REPOS` | Comma-separated list of repositories to monitor | None |
-| `GF_SERVER_ROOT_URL` | Full URL where Grafana is accessible | http://localhost:3000 |
-| `GF_SERVER_DOMAIN` | Domain for Grafana cookies | localhost |
-| `GF_SERVER_ENFORCE_DOMAIN` | Enforce domain for security | true |
-
-You can add other Grafana configuration options with the `GF_` prefix. See the [Grafana documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/) for all available options.
-
-### Limiting Repository Access
-
-The dashboard shows repositories based on your `.env` configuration:
-
-1. **Set repositories in your .env file**
-   ```
-   REPOS="YaLTeR/niri, YaLTeR/wl-clipboard-rs, hyperlight-dev/hyperlight, docker/buildx, docker/model-cli"
-   ```
-
-2. **Run the update script**
-   ```bash
-   ./update-dashboard.sh
-   ```
-
-### Custom Domain Configuration
-
-To serve the dashboard on a custom domain, set these variables in your `.env` file:
-
-```
+# Optional
 GF_SERVER_ROOT_URL=https://your-domain.com
 GF_SERVER_DOMAIN=your-domain.com
-GF_SERVER_ENFORCE_DOMAIN=true
 ```
 
-The Docker Compose file and Grafana configuration will automatically use these settings.
+## Python Automation Scripts
 
-## Dashboard Overview
+| Script                     | Purpose                                   |
+| :------------------------- | :---------------------------------------- |
+| `interactive_setup.py`     | Interactive configuration wizard          |
+| `generate_provisioning.py` | Generate Grafana provisioning files       |
+| `update_dashboards.py`     | Update dashboards with repository filters |
+| `validate_backlog.py`      | Validate complete system setup            |
 
-This project includes two main dashboards:
+## Available Dashboards
 
 ### GitHub Dashboard
 
-Provides detailed metrics for a specific repository:
-- Release and tag counts
-- Pull request metrics (count, open time)
-- Issue metrics (open/closed counts, resolution time)
-- Historical data tables for commits, issues, PRs
+- Repository metrics (issues, PRs, commits)
 - Contributor information
+- Release and tag tracking
+- Historical data tables
 
 ### GitHub Organization Dashboard
 
-Provides an overview of multiple repositories in an organization:
-- Releases per repository
-- Issues created per repository
-- Pull requests per repository
-- Active issues and PRs
+- Multi-repository overview
+- Organization-wide statistics
+- Active issues and PRs across repos
 
-## Security Features
+## Management Commands
 
-This configuration is designed with security in mind:
-- Anonymous access with viewer-only permissions
-- No login form or API access for anonymous users
-- CSRF protection with strict cookie settings
-- Rate limiting for dashboard refreshes
-- Configurable domain enforcement via environment variables
+```bash
+# System management
+make start          # Start the dashboard
+make stop           # Stop the dashboard  
+make restart        # Restart services
+make logs           # View Grafana logs
+make status         # Check container status
 
-## Customization
+# Configuration
+make setup          # Interactive setup
+make generate       # Generate provisioning
+make update         # Update dashboards
+make validate       # Validate configuration
 
-### Adding Custom Dashboards
+# Maintenance
+make test           # Run integration tests
+make backup         # Backup configuration
+make clean          # Clean temporary files
+```
 
-Place your custom dashboard JSON files in the `dashboards` directory and they will be automatically loaded.
+## Monitoring Capabilities
 
-### Modifying Datasource Configuration
+- **Issues**: Created, open, closed, resolution time
+- **Pull Requests**: Created, active, merge time
+- **Releases**: Version tracking and deployment frequency
+- **Contributors**: Team activity and contributions
+- **Organizations**: Multi-repo statistics and trends
 
-Edit `provisioning/datasources/datasource.yaml` to modify the GitHub datasource settings. The GitHub token is automatically injected from your `.env` file.
+## Filtering Options
 
-See the [Grafana configuration documentation](https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/) for all available options.
+- Filter by specific repositories
+- Organization-level views
+- Time-based analysis
+- Label and milestone filtering
 
 ## Testing
 
-### Running Tests Locally
-
-1. Run configuration validation:
 ```bash
-./test/validate-config.sh
-```
+# Validate setup
+make test
 
-2. Run integration tests:
-```bash
+# Check specific components
+python3 validate_backlog.py
 ./test/integration-test.sh
 ```
 
-### Continuous Integration
+## Project Structure
 
-The project uses GitHub Actions for CI/CD. Every push and pull request triggers:
-- Docker configuration validation
-- Container build testing
-- Integration tests
-- Health checks
-
-View the status of CI runs in the GitHub Actions tab.
+```
+├── Python Scripts
+│   ├── interactive_setup.py      # Configuration wizard
+│   ├── generate_provisioning.py  # Provisioning generator
+│   ├── update_dashboards.py      # Dashboard updater
+│   └── validate_backlog.py       # System validator
+├── Dashboards
+│   ├── github.json               # Main dashboard
+│   └── github-organization.json  # Organization dashboard
+├── Provisioning (auto-generated)
+│   ├── datasources/              # GitHub datasource config
+│   ├── dashboards/               # Dashboard provisioning
+│   └── access-control/           # Security settings
+└── Configuration
+    ├── docker-compose.yml        # Container setup
+    ├── .env.template            # Configuration template
+    └── Makefile                 # Automation commands
+```
 
 ## Troubleshooting
 
-### Configuration Issues
+### Common Issues
 
-If your configuration isn't being applied properly:
+**Dashboard not loading?**
 
-1. Check that your `.env` file exists and has the correct permissions
-2. Verify that Docker Compose is loading the `.env` file
-3. Restart the container to apply changes: `docker-compose restart`
+```bash
+make logs
+make validate
+```
 
-### Access Issues
+**Repository filtering not working?**
+
+```bash
+make update restart
+```
+
+**Grafana won't start?**
+
+```bash
+make clean start
+```
+
+**Need to reconfigure?**
+
+```bash
+make setup generate restart
+```
 
 If you can't access your dashboard:
 
 1. Check that the `GF_SERVER_ROOT_URL` matches how you're accessing Grafana
 2. Ensure port 3000 is accessible (or whichever port you've configured)
 3. Check Docker logs: `docker-compose logs grafana`
+
+## Security
+
+- Anonymous access with viewer-only permissions
+- No API access for anonymous users
+- Repository access controlled via configuration
+- CSRF protection enabled
+- Secure cookie settings
 
 ## License
 
