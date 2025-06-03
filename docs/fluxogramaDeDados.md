@@ -1,93 +1,7 @@
 # Fluxograma de Dados
 
-```mermaid
-graph TD
-    %% Configuração Inicial
-    A[Usuário] -->|Clone do Repositório| B[github-monitor]
-    B --> C[Configuração .env]
-    C -->|GITHUB_TOKEN<br/>REPOS<br/>GF_SERVER_*| D[Variáveis de Ambiente]
-    
-    %% Scripts de Setup
-    D --> E[Scripts de Configuração]
-    E --> E1[./set-perms.sh<br/>Permissões SELinux]
-    E --> E2[./generate-config.sh<br/>Gera grafana.ini]
-    E --> E3[./update-dashboard.sh<br/>Atualiza Dashboards]
-    
-    %% Inicialização do Sistema
-    E1 --> F[Docker Compose]
-    E2 --> F
-    F -->|docker-compose up -d| G[Container Grafana]
-    
-    %% Fontes de Dados
-    H[GitHub API] -->|Personal Access Token| I[GitHub Datasource]
-    D -->|GITHUB_TOKEN| I
-    
-    %% Processamento de Dados
-    I -->|Pull de Dados| J[Métricas GitHub]
-    J --> J1[Issues<br/>- Abertas/Fechadas<br/>- Tempo de Resolução<br/>- Contadores]
-    J --> J2[Pull Requests<br/>- Contadores<br/>- Tempo de Abertura<br/>- Status]
-    J --> J3[Releases<br/>- Contadores por Repo<br/>- Tags]
-    J --> J4[Commits<br/>- Histórico<br/>- Contribuidores]
-    J --> J5[Repositórios<br/>- Filtrados por REPOS<br/>- Estatísticas]
-    
-    %% Sistema de Dashboards
-    K[Provisioning System]
-    K --> K1[provisioning/datasources/<br/>datasource.yaml]
-    K --> K2[dashboards/<br/>Dashboard JSONs]
-    
-    %% Configuração de Dashboards
-    J1 --> L[Repository Dashboard]
-    J2 --> L
-    J3 --> L
-    J4 --> L
-    L -->|Métricas Detalhadas<br/>de Repositório Específico| M[Grafana UI]
-    
-    J1 --> N[Organization Dashboard]
-    J3 --> N
-    J5 --> N
-    N -->|Visão Geral<br/>Múltiplos Repositórios| M
-    
-    %% Sistema de Segurança
-    O[Configurações de Segurança]
-    O --> O1[Acesso Anônimo<br/>Somente Visualização]
-    O --> O2[Proteção CSRF<br/>Cookies Seguros]
-    O --> O3[Rate Limiting<br/>Refresh de Dashboards]
-    O --> O4[Domain Enforcement<br/>GF_SERVER_ENFORCE_DOMAIN]
-    
-    O1 --> M
-    O2 --> M
-    O3 --> M
-    O4 --> M
-    
-    %% Acesso Final
-    M -->P[Dashboard Interativo]
-    P --> P1[Visualizações<br/>- Gráficos<br/>- Tabelas<br/>- Métricas]
-    P --> P2[Filtros<br/>- Por Repositório<br/>- Por Período<br/>- Por Tipo]
-    
-    %% Atualizações e Manutenção
-    Q[Sistema de Atualização]
-    Q --> Q1[./test/validate-config.sh<br/>Validação]
-    Q --> Q2[./test/integration-test.sh<br/>Testes Integração]
-    Q --> Q3[GitHub Actions CI/CD<br/>- Build Testing<br/>- Health Checks]
-    
-    %% Logs e Monitoramento
-    R[Logs e Debug]
-    G --> R
-    R -->|docker-compose logs grafana| S[Troubleshooting]
-    
-    %% Estilos
-    classDef configClass fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000,font-weight:bold
-    classDef dataClass fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000,font-weight:bold
-    classDef systemClass fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px,color:#000,font-weight:bold
-    classDef uiClass fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000,font-weight:bold
-    classDef securityClass fill:#ffebee,stroke:#b71c1c,stroke-width:2px,color:#000,font-weight:bold
-    
-    class A,C,D,E,E1,E2,E3 configClass
-    class H,I,J,J1,J2,J3,J4,J5 dataClass
-    class F,G,K,K1,K2,Q,Q1,Q2,Q3,R systemClass
-    class L,N,M,P,P1,P2 uiClass
-    class O,O1,O2,O3,O4 securityClass
-```
+[![](https://mermaid.ink/img/pako:eNqlV81y2kgQfpUppXLZGjASENvUVqowCAy2EQbiw8op10gawZSFhtWMnDghD5PaQ2oPOe3msldebFujHyTwXja-mJ7pn2-6v-6Gz5rLPap1tGVENiu06N-HCP5ev0Y9HvpsGUdk9233B0ejkLmMBOl1134n4t3XiPH3qFZ7u-0FPKTI42hGN1wwufsLrrbowl4yuYqd2pqHTPLofWp9kdignn0QoU7Dp0yjp7wOR4vLdxcPC-vKnPzqRCdvZ-bUmqtPw8HD3JzdmbOHX7aob9-RiO2-PlEmkEdRd-0wGkqaOSteNHcjtpFKZU5lvEkv-gqNaZduq8AyN2aqp9v1E0FlbUOjtaiLlYIzBYEJsftBBZqb1yyMP1atDLBa0pBGRNKaq9zntkM4RJB9n4SkzkJWNWyCYbzxEjOPiJXDSeTlll0Zk4B9Iqif34jDJ2dVA6U0x1CiOROSrkkWRVdhBnafu480gpevoYB55kwjvU2lgSqKpxThDUoRxRtU87ZomBRTEgYvRMP0LYdQBqBAVXr7xOMiPb-0h0xexg7qTkcplSCVgockQF3XpUKgBX-k4RaNcsU-kUTwOHJzkP0jroD2QexpxBNnZA204AcQRmnYOAiKiy0a2ze7P2XEXCJQGjiLNlYZGev2SIiYClWHGuo6NAJYJwPqrgjUKTteUEhS4nVGBQ9iVYLsSqXL4xEVVceGrZDM6O_gXYoj7UPPKjIwNTufSyLjA5dNe0YDSgQ99oY2PFI9m7slywPjFhR2vWYFkktgT9LdbvkhEXNi9sJj2nZ5HuQuBiyQUZLmNHrR0zVkCoC_-y5kkvej7k15mxYp53t6e2VDgZ-YYDBmwiWaPyeamf2VgnKl25uSyolXsEicqOD7g_ozWQdVY8Muei9TLxCg8dyaHGE9mGwvQB6njXedZ4hHz3udPItp-11nUrMitcrSteLwnrJ9KkmwZ6Ji4L4QkOcNdXfffajiFt3YWcOid6PKOzKIE9uKliSEESIheccgU1iTTGqXpYmCdcdEkoRkzgUKzs3un0CyTQAMqPADsPx3zec0yWe4-5ZNLquyPn5QUVXK0FkKjqXb3aT_OeqGu79Dtk7JO-fJPKAIAMb7GVm1NBJqSZrWsTefDZRlj_NHlsz6JB4XVRPoNxjX6JpB2wDX0s1FfeiOVZUJVbMWzOA1TFBkhj4HHibYDnadORlYs5750LduuqNJpVhWWqwsgZZRkZoVqVWWilRnCRqwMF_yN4ne1N5TfQTJggXGnvIcTZWnqW6XM_ijmDPDaPc14VgxtIhDg2I4FmytOjNsNR8Ko2k2oXKWlI5hVey-c698tGAbftiM-ZrMaELRDQljSUNV01Tr1i4xraRfsOFWgbtNlj8sMXnyBBre8S6_U8cvGBq5IYMcLiPVSrXkILdcwGcAN0qvX_DQLDalmxgL1Bud9PrZ0y9iFngo8ZETDiY1JYFcod6Kuo9HA-qaL1Um0u9l6V5ML2d2dtenTrzM7IYKwyzTeOl7QJAYZd9itmhuLyIeOwFQnvME02F8mPQsyDewC6QQfeqjNJm9REQ-C4LOK6r7bZ9iAYR4pJ1XDb19eu5kYu0D8-SqY2w-YpcHPILrRgP7sI9qHyhbrmTH4YF3ECKZ8-UAfpO2_XYRoEX01pn7MwGEWj6VN5z5bXpWhNCdNjUaPxMiZpUX-PCGRuGevmnrjZ9yL6gbR0w-V4NQh-7r4Jzqrv5_0lQKhbq4h_vYxKaOTQObzXL5y3qXeITHeKzjsYHHTTxuYdgyRR3LmgM8xFf4SsdXBr7Ftzq-hf9NPCsXpax_jSf4Bk_xVMdTI09rWcHClo4tA1tNDGOzkhgNw08m5mkdGcUUa2v4BUASUfucOLjX5Aom-L3WgY8e9UkcyHvtPvwCZhsS_sb5OreERlmutI5PAgFS-l2_zwj00l6Fhh6NejwOpdZpKw9a57P2UesYp_XTduPsrG20m6fnjUYTbp_huFU3WufnLd14o5813rRPm1-w9kkFbdTPwKL0p3_5F1qNk3U?type=png)](https://mermaid.live/edit#pako:eNqlV81y2kgQfpUppXLZGjASENvUVqowCAy2EQbiw8op10gawZSFhtWMnDghD5PaQ2oPOe3msldebFujHyTwXja-mJ7pn2-6v-6Gz5rLPap1tGVENiu06N-HCP5ev0Y9HvpsGUdk9233B0ejkLmMBOl1134n4t3XiPH3qFZ7u-0FPKTI42hGN1wwufsLrrbowl4yuYqd2pqHTPLofWp9kdignn0QoU7Dp0yjp7wOR4vLdxcPC-vKnPzqRCdvZ-bUmqtPw8HD3JzdmbOHX7aob9-RiO2-PlEmkEdRd-0wGkqaOSteNHcjtpFKZU5lvEkv-gqNaZduq8AyN2aqp9v1E0FlbUOjtaiLlYIzBYEJsftBBZqb1yyMP1atDLBa0pBGRNKaq9zntkM4RJB9n4SkzkJWNWyCYbzxEjOPiJXDSeTlll0Zk4B9Iqif34jDJ2dVA6U0x1CiOROSrkkWRVdhBnafu480gpevoYB55kwjvU2lgSqKpxThDUoRxRtU87ZomBRTEgYvRMP0LYdQBqBAVXr7xOMiPb-0h0xexg7qTkcplSCVgockQF3XpUKgBX-k4RaNcsU-kUTwOHJzkP0jroD2QexpxBNnZA204AcQRmnYOAiKiy0a2ze7P2XEXCJQGjiLNlYZGev2SIiYClWHGuo6NAJYJwPqrgjUKTteUEhS4nVGBQ9iVYLsSqXL4xEVVceGrZDM6O_gXYoj7UPPKjIwNTufSyLjA5dNe0YDSgQ99oY2PFI9m7slywPjFhR2vWYFkktgT9LdbvkhEXNi9sJj2nZ5HuQuBiyQUZLmNHrR0zVkCoC_-y5kkvej7k15mxYp53t6e2VDgZ-YYDBmwiWaPyeamf2VgnKl25uSyolXsEicqOD7g_ozWQdVY8Muei9TLxCg8dyaHGE9mGwvQB6njXedZ4hHz3udPItp-11nUrMitcrSteLwnrJ9KkmwZ6Ji4L4QkOcNdXfffajiFt3YWcOid6PKOzKIE9uKliSEESIheccgU1iTTGqXpYmCdcdEkoRkzgUKzs3un0CyTQAMqPADsPx3zec0yWe4-5ZNLquyPn5QUVXK0FkKjqXb3aT_OeqGu79Dtk7JO-fJPKAIAMb7GVm1NBJqSZrWsTefDZRlj_NHlsz6JB4XVRPoNxjX6JpB2wDX0s1FfeiOVZUJVbMWzOA1TFBkhj4HHibYDnadORlYs5750LduuqNJpVhWWqwsgZZRkZoVqVWWilRnCRqwMF_yN4ne1N5TfQTJggXGnvIcTZWnqW6XM_ijmDPDaPc14VgxtIhDg2I4FmytOjNsNR8Ko2k2oXKWlI5hVey-c698tGAbftiM-ZrMaELRDQljSUNV01Tr1i4xraRfsOFWgbtNlj8sMXnyBBre8S6_U8cvGBq5IYMcLiPVSrXkILdcwGcAN0qvX_DQLDalmxgL1Bud9PrZ0y9iFngo8ZETDiY1JYFcod6Kuo9HA-qaL1Um0u9l6V5ML2d2dtenTrzM7IYKwyzTeOl7QJAYZd9itmhuLyIeOwFQnvME02F8mPQsyDewC6QQfeqjNJm9REQ-C4LOK6r7bZ9iAYR4pJ1XDb19eu5kYu0D8-SqY2w-YpcHPILrRgP7sI9qHyhbrmTH4YF3ECKZ8-UAfpO2_XYRoEX01pn7MwGEWj6VN5z5bXpWhNCdNjUaPxMiZpUX-PCGRuGevmnrjZ9yL6gbR0w-V4NQh-7r4Jzqrv5_0lQKhbq4h_vYxKaOTQObzXL5y3qXeITHeKzjsYHHTTxuYdgyRR3LmgM8xFf4SsdXBr7Ftzq-hf9NPCsXpax_jSf4Bk_xVMdTI09rWcHClo4tA1tNDGOzkhgNw08m5mkdGcUUa2v4BUASUfucOLjX5Aom-L3WgY8e9UkcyHvtPvwCZhsS_sb5OreERlmutI5PAgFS-l2_zwj00l6Fhh6NejwOpdZpKw9a57P2UesYp_XTduPsrG20m6fnjUYTbp_huFU3WufnLd14o5813rRPm1-w9kkFbdTPwKL0p3_5F1qNk3U)
+
 
 ## Descrição dos Componentes
 
@@ -151,3 +65,4 @@ graph TD
 | Data       | Versão | Descrição            | Autores                                                                                                                            |
 |------------|--------|----------------------|------------------------------------------------------------------------------------------------------------------------------------|
 | 02/06/2025 | 0.1    | Criação do Fluxograma dos Dados | [Yan Luca Viana de Araújo Fontenele](https://github.com/yan-luca) |
+| 02/06/2025 | 0.1.2    | Correção render fluxograma | [Renann de Oliveira Gomes](https://github.com/renannOgomes) |
