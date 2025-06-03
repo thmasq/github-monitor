@@ -21,20 +21,20 @@ services:
     ports:
       - "0.0.0.0:3000:3000"
     environment:
-       - GF_INSTALL_PLUGINS=grafana-github-datasource
-       - GF_AUTH_ANONYMOUS_ENABLED=true
-       - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
-       - GF_SECURITY_ALLOW_EMBEDDING=true
-       - GF_AUTH_BASIC_ENABLED=false
-       - GF_AUTH_DISABLE_LOGIN_FORM=true
-       - GF_AUTH_DISABLE_SIGNOUT_MENU=true
-       - GF_USERS_ALLOW_SIGN_UP=false
-       - GF_USERS_ALLOW_ORG_CREATE=false
-       - GF_DASHBOARDS_MIN_REFRESH_INTERVAL=1m
-       - GF_SECURITY_COOKIE_SAMESITE=strict
-       - GF_SERVER_ENFORCE_DOMAIN=${GF_SERVER_ENFORCE_DOMAIN:-true}
-       - GF_SERVER_ROOT_URL=${GF_SERVER_ROOT_URL:-http://localhost:3000}
-       - GF_SERVER_DOMAIN=${GF_SERVER_DOMAIN:-localhost}
+      - GF_INSTALL_PLUGINS=grafana-github-datasource
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+      - GF_SECURITY_ALLOW_EMBEDDING=true
+      - GF_AUTH_BASIC_ENABLED=false
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+      - GF_AUTH_DISABLE_SIGNOUT_MENU=true
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_USERS_ALLOW_ORG_CREATE=false
+      - GF_DASHBOARDS_MIN_REFRESH_INTERVAL=1m
+      - GF_SECURITY_COOKIE_SAMESITE=strict
+      - GF_SERVER_ENFORCE_DOMAIN=${GF_SERVER_ENFORCE_DOMAIN:-true}
+      - GF_SERVER_ROOT_URL=${GF_SERVER_ROOT_URL:-http://localhost:3000}
+      - GF_SERVER_DOMAIN=${GF_SERVER_DOMAIN:-localhost}
     env_file:
       - .env
     volumes:

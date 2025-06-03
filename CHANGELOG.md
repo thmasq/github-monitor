@@ -18,7 +18,7 @@
 
 ## 0.1.0 - 2025-04-28
 
-### Added 
+### Added
 
 - Add official documentation (Product vision)
 - Add Roadmap/Backlog of the project

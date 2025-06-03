@@ -1,5 +1,4 @@
-Security Policy
----------------
+## Security Policy
 
 This security policy outlines our procedures for handling security vulnerabilities in this project.
 
@@ -9,11 +8,11 @@ If you discover a security vulnerability, please **do not** create a public GitH
 
 1. **Private Disclosure:** Send an email (see Contact) with the subject: SECURITY: github-monitor. Please include a detailed description of the vulnerability on email body, including:
 
-    * The affected component(s)
+   - The affected component(s)
 
-    * Steps to reproduce the vulnerability
+   - Steps to reproduce the vulnerability
 
-    * Potential impact of the vulnerability
+   - Potential impact of the vulnerability
 
 2. **Timely Reporting:** Please report vulnerabilities in a timely manner. This allows us to address them before they can be exploited.
 
