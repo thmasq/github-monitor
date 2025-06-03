@@ -7,3 +7,4 @@
 - [🛣️ Roadmap](roadmap.md)
 - [🧩 Changelog](changelog.md)
 - [📝 Diário de Bordo](diario-de-bordo.md)
+- [🔍 Fluxograma dos Dados](fluxogramaDeDados.md)
